@@ -14,6 +14,8 @@ namespace Qwiic_Openlog {
 
     const I2C_BUFFER_LENGTH = 32;
     const READ_BUFFER_LENGTH = 256;
+    const I2C_WRITE_MAX_RETRY = 3;
+    const I2C_WRITE_OK = 0;
 
     const CR = 13;
     const LF = 10;
@@ -60,7 +62,12 @@ namespace Qwiic_Openlog {
         let temp: Buffer = pins.createBuffer(2);
         temp[0] = register;
         temp[1] = value;
-        pins.i2cWriteBuffer(QWIIC_OPENLOG_ADDR, temp, false);
+        let retry = 0;
+        let error = pins.i2cWriteBuffer(QWIIC_OPENLOG_ADDR, temp, false);
+        while ((error !=  I2C_WRITE_OK) && (retry < I2C_WRITE_MAX_RETRY)) {
+            error = pins.i2cWriteBuffer(QWIIC_OPENLOG_ADDR, temp, false);
+            retry += 1;
+        }
         basic.pause(15)
     }
 
@@ -69,7 +76,12 @@ namespace Qwiic_Openlog {
         temp[0] = register;
         for (let i = 0; i < buf.length; i++)
             temp[i + 1] = buf[i]
-        pins.i2cWriteBuffer(QWIIC_OPENLOG_ADDR, temp, false);
+        let retry = 0;
+        let error = pins.i2cWriteBuffer(QWIIC_OPENLOG_ADDR, temp, false);
+        while ((error !=  I2C_WRITE_OK) && (retry < I2C_WRITE_MAX_RETRY)) {
+            error = pins.i2cWriteBuffer(QWIIC_OPENLOG_ADDR, temp, false);
+            retry += 1;
+        }
         basic.pause(15)
     }
 
