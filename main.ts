@@ -71,7 +71,7 @@ namespace Qwiic_Openlog {
         let retry = 0;
         let error = I2C_WRITE_FAILED;
         while ((error !=  I2C_WRITE_OK) && (retry < I2C_WRITE_MAX_RETRY)) {
-            error = Qwiic_Openlog.i2cWriteBuffer(QWIIC_OPENLOG_ADDR, temp, false);
+            error = i2cWriteBuffer(QWIIC_OPENLOG_ADDR, temp, false);
             retry += 1;
         }
         basic.pause(15)
@@ -85,7 +85,7 @@ namespace Qwiic_Openlog {
         let retry = 0;
         let error =  I2C_WRITE_FAILED;
         while ((error !=  I2C_WRITE_OK) && (retry < I2C_WRITE_MAX_RETRY)) {
-            error = Qwiic_Openlog.i2cWriteBuffer(QWIIC_OPENLOG_ADDR, temp, false);
+            error = i2cWriteBuffer(QWIIC_OPENLOG_ADDR, temp, false);
             retry += 1;
         }
         basic.pause(15)
