@@ -49,6 +49,10 @@ namespace Qwiic_Openlog {
     let readBuffer: Buffer = pins.createBuffer(READ_BUFFER_LENGTH)
     let readBufferPtr = 0;
 
+    // blockId="serial_buffersize" block="serial receive buffer size %size"
+    //% shim=Qwiic_Openlog::i2cWriteBuffer
+    function i2cWriteBuffer(address: int32, buf: Buffer, repeat?: boolean): int32;
+    
     function readByte(register: number): number {
         let cmd: Buffer = pins.createBuffer(1)
         let temp: Buffer = pins.createBuffer(1)
@@ -77,9 +81,9 @@ namespace Qwiic_Openlog {
         for (let i = 0; i < buf.length; i++)
             temp[i + 1] = buf[i]
         let retry = 0;
-        let error = pins.i2cWriteBuffer(QWIIC_OPENLOG_ADDR, temp, false);
+        let error !=  I2C_WRITE_OK;
         while ((error !=  I2C_WRITE_OK) && (retry < I2C_WRITE_MAX_RETRY)) {
-            error = pins.i2cWriteBuffer(QWIIC_OPENLOG_ADDR, temp, false);
+            error = Qwiic_Openlog.i2cWriteBuffer(QWIIC_OPENLOG_ADDR, temp, false);
             retry += 1;
         }
         basic.pause(15)
