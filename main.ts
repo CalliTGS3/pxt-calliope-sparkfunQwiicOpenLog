@@ -51,9 +51,7 @@ namespace Qwiic_Openlog {
     let readBufferPtr = 0;
 
     //% repeat.defl=0 shim=Qwiic_Openlog::i2cWriteBuffer
-    function i2cWriteBuffer(address: int32, buf: Buffer, repeat?: boolean): int32 {
-        return 0;
-    };
+    function i2cWriteBuffer(address: int32, buf: Buffer, repeat?: boolean): int32; 
 
     function readByte(register: number): number {
         let cmd: Buffer = pins.createBuffer(1)
