@@ -8,9 +8,9 @@
     },
     "files": [
         "README.md",
-        "main.ts",
-        "i2c.cpp",
-        "shims.d.ts"
+        "openlog.ts",
+        "openlog.cpp",
+        "openlog_shim.ts"
     ],
     "testFiles": [
         "test.ts"
