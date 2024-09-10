@@ -9,7 +9,8 @@
     "files": [
         "README.md",
         "main.ts",
-        "i2c.cpp"
+        "i2c.cpp",
+        "shims.d.ts"
     ],
     "testFiles": [
         "test.ts"
