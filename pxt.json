@@ -8,9 +8,7 @@
     },
     "files": [
         "README.md",
-        "openlog.ts",
-        "openlog.cpp",
-        "openlog_shim.ts"
+        "openlog.ts"
     ],
     "testFiles": [
         "test.ts"
